@@ -1,0 +1,280 @@
+/* Google Fonts CDN is unreachable behind this network's firewall.
+   Falling back to system fonts that match the IBM Plex aesthetic. */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap'); */
+
+:root {
+  /* Precision Near-Black Charcoal Surfaces */
+  --bg-app: #0D1014;
+  --bg-surface-1: #13171C;
+  --bg-surface-2: #1A1F26;
+  --bg-surface-3: #222933;
+
+  /* Hairline Borders */
+  --border-hairline: #252B33;
+  --border-subtle: #2F3742;
+  --border-focus: #38C8E0;
+
+  /* Typography Colors */
+  --text-main: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-bright: #F8FAFC;
+
+  /* Mission-Grade Accents */
+  --accent-cyan: #38C8E0;
+  --accent-blue: #2F6FDB;
+  --accent-amber: #E0A23A; /* Warnings, quality flags only */
+  --accent-red: #E04848;   /* Errors only */
+  --status-idle: #64748B;
+  --status-running: #38C8E0;
+  --status-success: #2F6FDB;
+  --status-warning: #E0A23A;
+  --status-error: #E04848;
+
+  /* Diverging Perceptually Uniform Palette (Colorblind safe: Blue to Neutral to Amber) */
+  --div-blue-deep: #1E3A8A;
+  --div-blue-mid: #2F6FDB;
+  --div-blue-light: #7DD3FC;
+  --div-neutral: #E2E8F0;
+  --div-amber-light: #FDE68A;
+  --div-amber-mid: #E0A23A;
+  --div-amber-deep: #B45309;
+
+  /* Instrument Typography */
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+
+  /* Strict Mission-Grade Radius: 2-4px only */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+
+  /* Fast purposeful transitions */
+  --trans-instant: 150ms ease-out;
+  --trans-smooth: 200ms ease-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.45;
+  overflow-x: hidden;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Numeric readouts and coordinates */
+.num-tabular, code, pre, .font-mono, td.metric-val, .badge-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+}
+
+/* Mission-Grade Panels (Hairline borders, no drop shadow cards) */
+.instrument-panel {
+  background-color: var(--bg-surface-1);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+}
+
+.instrument-panel-inner {
+  background-color: var(--bg-surface-2);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+}
+
+/* Sticky Headers & Tabular Layouts */
+table.instrument-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+table.instrument-table th {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-surface-2);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10.5px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-hairline);
+  text-align: left;
+  z-index: 10;
+}
+
+table.instrument-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border-hairline);
+  color: var(--text-main);
+}
+
+table.instrument-table tr:hover td {
+  background-color: rgba(56, 200, 224, 0.03);
+}
+
+/* Custom hairline scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-subtle);
+}
+
+/* Buttons */
+.btn-instrument {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-surface-2);
+  color: var(--text-main);
+  transition: border-color var(--trans-instant), background-color var(--trans-instant);
+}
+
+.btn-instrument:hover:not(:disabled) {
+  border-color: var(--border-subtle);
+  background-color: var(--bg-surface-3);
+  color: var(--text-bright);
+}
+
+.btn-instrument:focus-visible {
+  outline: 1px solid var(--accent-cyan);
+  outline-offset: 1px;
+}
+
+.btn-instrument:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-instrument.primary {
+  background-color: rgba(56, 200, 224, 0.12);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.btn-instrument.primary:hover:not(:disabled) {
+  background-color: rgba(56, 200, 224, 0.2);
+}
+
+/* Status Indicator Dots */
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.status-dot.idle { background-color: var(--status-idle); }
+.status-dot.running { 
+  background-color: var(--status-running);
+  box-shadow: 0 0 6px rgba(56, 200, 224, 0.6);
+  animation: pulse-dot 1.4s infinite ease-in-out;
+}
+.status-dot.completed { background-color: var(--accent-blue); }
+.status-dot.warning { background-color: var(--accent-amber); }
+.status-dot.error { background-color: var(--accent-red); }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .status-dot.running {
+    animation: none;
+  }
+}
+
+/* Skeleton Loading (no spinners) */
+.skeleton-box {
+  background-color: var(--bg-surface-2);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  min-height: 24px;
+}
+
+/* Leaflet dark theme adjustments */
+.leaflet-container {
+  background-color: #0B0E12 !important;
+  font-family: var(--font-sans) !important;
+}
+.leaflet-bar {
+  border: 1px solid var(--border-hairline) !important;
+  border-radius: var(--radius-xs) !important;
+  box-shadow: none !important;
+}
+.leaflet-bar a {
+  background-color: var(--bg-surface-1) !important;
+  color: var(--text-main) !important;
+  border-bottom: 1px solid var(--border-hairline) !important;
+}
+.leaflet-bar a:hover {
+  background-color: var(--bg-surface-2) !important;
+  color: var(--accent-cyan) !important;
+}
+.leaflet-popup-content-wrapper {
+  background-color: var(--bg-surface-1) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-hairline) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+.leaflet-popup-tip {
+  background-color: var(--bg-surface-1) !important;
+  border: 1px solid var(--border-hairline) !important;
+}
+
+/* ── Map: dark instrument baseline ───────────────────────────────────── */
+.leaflet-container {
+  background: #0D1014 !important;
+}
+
+/* Tile pane tiles (canvas elements from DarkBasemap GridLayer) */
+.leaflet-tile-pane canvas {
+  display: block;
+}
+
+/* Ensure tiles fill the pane without gaps */
+.leaflet-tile {
+  outline: none;
+}
+
+/* Keep all overlay layers (markers, popups, SVG) above tile pane */
+.leaflet-overlay-pane,
+.leaflet-shadow-pane,
+.leaflet-marker-pane,
+.leaflet-tooltip-pane,
+.leaflet-popup-pane {
+  z-index: 400;
+}
